@@ -1,8 +1,10 @@
 var express = require("express")
-var app = express()
 var bodyParser = require('body-parser')
+
+var app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
 app.get("/",function(req,res){
 	var form = '<!doctype html>'+
 	'<html lang="ru">'+
@@ -12,7 +14,7 @@ app.get("/",function(req,res){
 	'</head>'+
 	'<body>'+
 	'<h1>Форма для отправки данных на сервер</h1>'+
-	'<form action="" method="post">'+
+	'<form action="/submit_result" method="post">'+
 	'<textarea name="text" id="" cols="30" rows="10"></textarea><br/>'+
 	'<input type="submit" value="Отправить данные на сервер"/>'+
 	'</form>'+
@@ -25,6 +27,7 @@ app.listen("3000", function(){
 })
 app.post("/submit_result", function(req, res){
 	console.log(req.body)
-	res.send("Вы нажали на кнопку с типом submit")
+	var post_text = req.body.text? "вы отправили на сервер текст: " + req.body.text :"вы отправили на сервер пустую строку"
+	res.send(post_text)
 })
 
