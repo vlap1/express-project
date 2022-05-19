@@ -1,37 +1,40 @@
+<!DOCTYPE html>
 <html>
-	<head>
-		<title><%= title %></title>
-		<link rel='stylesheet' href='/stylesheets/style.css' />
-		<link href="/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
-		<script src="/jquery/dist/jquery.js"></script>
-		<script src="/bootstrap/dist/js/bootstrap.js"></script>
-	</head>
-	<body>
-		<nav role="navigation" class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" data-target="#navbarCollapse" datatoggle="collapse" class="navbar-toggle">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a href="/" class="navbar-brand">Все Все Все ...</a>
-		</div>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.js"></script>
+    <header>         
+      <div class="logo">
+      <a href="/"> 
+      <img src="" width="70" />
+      </a>
+    </div>
+    <div class="menu" id="menu">
+      <ul>
+        <li><a href="/">Персонажи</a></li>
+        <li><a href="/dracula">Граф дракула</a></li>
+        <li><a href="/jelly">Желе</a></li>
+        <li><a href="/invisible">Невидимка</a></li>
+      </ul>
+    </div>
+    <div class="tel"><a class="rmenu" href="/exit">Exit</a>
+    </div>
+  </header>
+</header>
+<title>
 
-		<div id="navbarCollapse" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li><a href="#">Винни Пух</a></li>
-				<li><a href="#">Пятачок</a></li>
-				<li><a href="#">Иа Иа</a></li>
-				<li><a href="#">Кролик</a></li>
-				<li><a href="#">Сова</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Войти</a></li>
-			</ul>
-		</div>
-		</nav>
-	<%- body %>
+</title>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link href="/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+<script src="/jquery/dist/jquery.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.js"></script> 
+</head>
+  </head>
+  <body>
+    <%- body %>
 	</body>
 </html>
 
