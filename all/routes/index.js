@@ -6,14 +6,14 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* Страница кота */
+/* Страница кота 
 router.get('/cat', function(req, res, next) {
   res.render('hero', {
   	title: "Просто кот",
   	picture: "images/cat.jpg",
   	desc: "Просто милый кот"
   });
-});
+});*/
 
 /* Страница Невидимки */
 router.get('/invisible', function(req, res, next) {
