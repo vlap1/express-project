@@ -7,30 +7,42 @@ var data = require('./data.js').data
 // 2. Вставить 5 героев
 // 3. Закрыть соединение с базой данных
 async.series([
-open,
-dropDatabase,
-createHeroes,
-close
-],
-function(err,result){
-if(err) throw err
-console.log("ok")
-})
+        open,
+        dropDatabase,
+        requireModels,
+        createHeroes
+    ],
+    function(err,result){
+        mongoose.disconnect()
+    })
+
 function open(callback){
-mongoose.connection.on("open",callback)
-}
-function dropDatabase(callback){
-var db = mongoose.connection.db
-db.dropDatabase(callback)
-}
-function createHeroes(callback){
-async.each(data, function(heroData, callback){
-var hero = new mongoose.models.Hero(heroData)
-hero.save(callback)
-},
-callback)
-}
-function close(callback){
-mongoose.disconnect(callback)
+    mongoose.connection.on("open",callback)
+    console.log("Открыта")
 }
 
+function dropDatabase(callback){
+    var db = mongoose.connection.db
+    db.dropDatabase(callback)
+    console.log("База дропнута")
+}
+
+function createHeroes(callback){
+    async.each(data, function(heroData, callback){
+            var hero = new mongoose.models.Hero(heroData)
+            hero.save(callback)
+        },
+        callback)
+        console.log("Герои созданы")
+}
+
+function requireModels(callback){
+    require("./models/hero").Hero
+
+    async.each(Object.keys(mongoose.models),function(modelName){
+        mongoose.models[modelName].ensureIndexes(callback)
+    },
+        callback
+    )
+    console.log("Модели проиндексированы")
+}
