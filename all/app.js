@@ -8,6 +8,7 @@ mongoose.connect('mongodb://0.0.0.0:27017/all')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var heroes = require('./routes/heroes');
 
 var app = express();
 
@@ -26,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/heroes', heroes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
