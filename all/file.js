@@ -1,22 +1,17 @@
 var async = require("async")
 var from_one_two_five = [1,"два",3,4,5]
-async.series([
+async.waterfall([
 function(callback){
-callback(null,"МАМА")
+callback(null, "МАМА", "МЫЛА","РАМУ")
 },
-function(callback){
-callback(null,"МЫЛА")
-},
-function(callback){
-callback(null,"РАМУ")
-}],
-function(err,result){
-if(err){
-console.log("Ошибка: "+err)
-} else {
+function(arg1, arg2, arg3, callback){
+callback(null, arg1 + ' ' + arg2 + ' ' + arg3)
+}
+],
+function(err, result){
+if(err) throw err
 console.log(result)
-}
-}
-)
+});
+
 
 
