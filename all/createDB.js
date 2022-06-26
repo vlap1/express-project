@@ -1,9 +1,17 @@
 var MongoClient = require("mongodb").MongoClient
-MongoClient.connect("mongodb://localhost:27017/all",
-function(err,db){
-if(err) throw err
+var data = require("./data.js").data
+
+MongoClient.connect("mongodb://0.0.0.0:27017/all",
+function(err,client) {
+if(err) {
+	throw err;
+}
+
+const db = client.db('all');
+db.dropDatabase()
+
 var collection = db.collection("heroes")
-collection.insertOne({name:"Винни Пух"},function(err,result){
-db.close()
+collection.insertMany(data,function(err,result){
+client.close()
 })
 })
