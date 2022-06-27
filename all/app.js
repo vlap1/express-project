@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://0.0.0.0:27017/all')
+var session = require("express-session")
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -24,10 +25,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
+app.use(session({
+	secret: "HotelTransylvania",
+	cookie:{maxAge:60*1000}
+}))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/heroes', heroes);
+
+
 
 
 // catch 404 and forward to error handler
